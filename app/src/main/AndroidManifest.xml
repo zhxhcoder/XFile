@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zhxh.android.xfile">
+    package="com.zhxh.xfile">
 
     <application
         android:allowBackup="true"
