@@ -11,10 +11,15 @@ public class TestTest {
 
     public static void main(String[] args) {
 
+        System.out.println("***************************************************************");
+
         for (String name : FileUtils.getFilesFromDir(dirPath)) {
             System.out.println(name);
         }
-        for (String name : FileUtils.getFilesFromDir(dirPath,"txt")) {
+
+        System.out.println("***************************************************************");
+
+        for (String name : FileUtils.getFilesFromDir(dirPath, "")) {
             System.out.println(name);
         }
     }
