@@ -8,7 +8,6 @@ import com.zhxh.xfilelib.FileUtils;
 public class TestTest {
 
     private static final String dirPath = "D:\\________________testDir";
-    private static final String dirPath1 = "D:\\________________testDir1";
 
     public static void main(String[] args) {
 
@@ -30,9 +29,12 @@ public class TestTest {
         }
 
         System.out.println("*******************************改变名字********************************");
+        for (String name : FileUtils.getMatchFiles(null,true,dirPath, "\\.txt$")) {
+            System.out.println("before "+name);
+        }
         FileUtils.renameMatchFiles(true,dirPath, "\\.\\.txt$","._.txt");
         for (String name : FileUtils.getMatchFiles(null,true,dirPath, "\\.txt$")) {
-            System.out.println(name);
+            System.out.println("after "+name);
         }
     }
 
