@@ -25,7 +25,13 @@ public class TestTest {
         }
         System.out.println("***************************************************************");
 
-        for (String name : FileUtils.getMatchFiles(null,true,dirPath, "txt")) {
+        for (String name : FileUtils.getMatchFiles(null,true,dirPath, "")) {
+            System.out.println(name);
+        }
+
+        System.out.println("*******************************改变名字********************************");
+        FileUtils.renameMatchFiles(true,dirPath, "\\.\\.txt$",".*.txt");
+        for (String name : FileUtils.getMatchFiles(null,true,dirPath, "\\.txt$")) {
             System.out.println(name);
         }
     }
