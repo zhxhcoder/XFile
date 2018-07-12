@@ -1,38 +1,30 @@
 package com.zhxh.xfilelib;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileUtils {
 
-    private static void searchFile(String path,String filename) {
+    public static List<String> showFile(String path) {
+
+        List<String> resultList = new ArrayList<>();
 
         File fileDirectory = new File(path);
 
         File[] fileList = fileDirectory.listFiles();
 
-        for (int j = 0; j < fileList.length; j++) {
+        for (int i = 0; i < fileList.length; i++) {
 
-            File file = fileList[j];
+            File file = fileList[i];
 
-            String fileName = file.getName();
-
-            if (fileName.contains(".apk")) {
-
-                String tempFileName = fileName.substring(0, fileName.indexOf(".apk"));
-
-                if (tempFileName.contains("-release")) {
-
-                    String newFileName = filename + tempFileName.substring(tempFileName.indexOf("-") + 1, tempFileName.indexOf("-release"));
-
-                    System.out.println(newFileName);
-
-                    file.renameTo(new File(fileDirectory + "/" + newFileName + ".apk"));
-                } else {
-                    System.out.println("已经改名");
-                }
-
+            if (!file.isDirectory()) {
+                String fileName = file.getName();
+                resultList.add(fileName);
             }
         }
+
+        return resultList;
     }
 
 }
