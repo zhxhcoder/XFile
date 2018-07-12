@@ -19,8 +19,7 @@ public class FileUtils {
         if (fileList == null) {
             return resultList;
         }
-        for (int i = 0; i < fileList.length; i++) {
-            File file = fileList[i];
+        for (File file : fileList) {
             if (!file.isDirectory()) {
                 String fileName = file.getName();
                 if (null == regRex || regRex.length() == 0) {
