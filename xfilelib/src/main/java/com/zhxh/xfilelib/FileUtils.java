@@ -184,7 +184,7 @@ public class FileUtils {
                 }
             } else {
                 if (isNest) {
-                    renameMatchFiles(true, file.getAbsolutePath(), regRex, destDir);
+                    copyMatchFiles(true, file.getAbsolutePath(), regRex, destDir);
                 }
             }
         }
@@ -305,6 +305,9 @@ public class FileUtils {
      */
     public static void copy(File resFile, String destDir) throws IOException {
         File destFolder = new File(destDir);
+
+        System.out.println("copy " + resFile + "\n" + destFolder.getAbsolutePath());
+
         if (!resFile.exists()) return;
         if (!destFolder.exists()) {
             destFolder.mkdirs();
