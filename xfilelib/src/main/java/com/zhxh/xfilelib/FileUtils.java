@@ -55,13 +55,11 @@ public class FileUtils {
         return resultList;
     }
 
-
     /**
-     * 输出顺序是从树最深层遍历 深度优先 逆序
-     *
      * @param isNest  是否嵌套
      * @param dirPath 目录位置
      * @param regRex  匹配的正则
+     * @param replace 替换的字符串
      * @return 能匹配的文件名
      */
     public static void renameMatchFiles(boolean isNest, String dirPath, String regRex, String replace) {
@@ -80,7 +78,11 @@ public class FileUtils {
                     Pattern pattern = Pattern.compile(regRex);
                     Matcher matcher = pattern.matcher(fileName);
                     if (matcher.find()) {
-                        file.renameTo(new File(file.getParent() + "\\" + fileName.replaceAll(regRex, replace)));
+                        if (file.renameTo(new File(file.getParent() + "\\" + fileName.replaceAll(regRex, replace)))) {
+
+                        } else {
+
+                        }
                     }
                 }
             } else {

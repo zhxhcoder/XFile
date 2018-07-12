@@ -30,7 +30,7 @@ public class TestTest {
         }
 
         System.out.println("*******************************改变名字********************************");
-        FileUtils.renameMatchFiles(true,dirPath, "\\.\\.txt$",".*.txt");
+        FileUtils.renameMatchFiles(true,dirPath, "\\.\\.txt$","._.txt");
         for (String name : FileUtils.getMatchFiles(null,true,dirPath, "\\.txt$")) {
             System.out.println(name);
         }
