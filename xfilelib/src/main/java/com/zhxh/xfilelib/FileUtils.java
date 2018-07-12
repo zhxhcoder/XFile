@@ -56,6 +56,8 @@ public class FileUtils {
     }
 
     /**
+     * 重命名匹配的文件
+     *
      * @param isNest  是否嵌套
      * @param dirPath 目录位置
      * @param regRex  匹配的正则
@@ -79,9 +81,7 @@ public class FileUtils {
                     Matcher matcher = pattern.matcher(fileName);
                     if (matcher.find()) {
                         if (file.renameTo(new File(file.getParent() + "\\" + fileName.replaceAll(regRex, replace)))) {
-
-                        } else {
-
+                            //重命名成功
                         }
                     }
                 }
@@ -97,4 +97,44 @@ public class FileUtils {
         renameMatchFiles(false, dirPath, regRex, replace);
     }
 
+    /**
+     * 删除匹配的文件
+     *
+     * @param isNest  是否嵌套
+     * @param dirPath 目录位置
+     * @param regRex  匹配的正则
+     * @return 能匹配的文件名
+     */
+    public static void deleteMatchFiles(boolean isNest, String dirPath, String regRex) {
+
+        File fileDirectory = new File(dirPath);
+        File[] fileList = fileDirectory.listFiles();
+        if (fileList == null) {
+            return;
+        }
+        for (File file : fileList) {
+            if (!file.isDirectory()) {
+                String fileName = file.getName();
+                if (null == regRex || regRex.length() == 0) {
+                    return;
+                } else {
+                    Pattern pattern = Pattern.compile(regRex);
+                    Matcher matcher = pattern.matcher(fileName);
+                    if (matcher.find()) {
+                        if (file.delete()) {
+                            //删除成功
+                        }
+                    }
+                }
+            } else {
+                if (isNest) {
+                    deleteMatchFiles(true, file.getAbsolutePath(), regRex);
+                }
+            }
+        }
+    }
+
+    public static void deleteMatchFiles(String dirPath, String regRex) {
+        deleteMatchFiles(false, dirPath, regRex);
+    }
 }
