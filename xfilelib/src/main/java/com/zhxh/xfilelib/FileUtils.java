@@ -23,7 +23,7 @@ public class FileUtils {
      * @param isNest     是否嵌套
      * @param dirPath    目录位置
      * @param regRex     匹配的正则
-     * @return 能匹配的文件名
+     *                   能匹配的文件名
      */
     public static List<String> getMatchFiles(List<String> resultList, boolean isNest, String dirPath, String regRex) {
         if (resultList == null) {
@@ -72,7 +72,7 @@ public class FileUtils {
      * @param dirPath 目录位置
      * @param regRex  匹配的正则
      * @param replace 替换的字符串
-     * @return 能匹配的文件名
+     *                能匹配的文件名
      */
     public static void renameMatchFiles(boolean isNest, String dirPath, String regRex, String replace) {
 
@@ -114,7 +114,7 @@ public class FileUtils {
      * @param isNest  是否嵌套
      * @param dirPath 目录位置
      * @param regRex  匹配的正则
-     * @return 能匹配的文件名
+     *                能匹配的文件名
      */
     public static void delMatchFiles(boolean isNest, String dirPath, String regRex) {
 
@@ -157,7 +157,7 @@ public class FileUtils {
      * @param dirPath 目录位置
      * @param regRex  匹配的正则
      * @param destDir 拷贝的位置
-     * @return 能匹配的文件名
+     *                能匹配的文件名
      */
     public static void copyMatchFiles(boolean isNest, String dirPath, String regRex, String destDir) {
 
@@ -199,7 +199,7 @@ public class FileUtils {
      * @param dirPath 目录位置
      * @param regRex  匹配的正则
      * @param destDir 移动到的位置
-     * @return 能匹配的文件名
+     *                能匹配的文件名
      */
     public static void moveMatchFiles(boolean isNest, String dirPath, String regRex, String destDir) {
 
@@ -237,7 +237,7 @@ public class FileUtils {
      * 新建目录
      *
      * @param folderPath String  如  c:/fqf
-     * @return boolean
+     *                   boolean
      */
     public void newFolder(String folderPath) {
         try {
@@ -281,7 +281,7 @@ public class FileUtils {
      * 删除文件
      *
      * @param filePathAndName String  文件路径及名称  如c:/hello.txt
-     * @return boolean
+     *                        boolean
      */
     public void delFile(String filePathAndName) {
         try {
