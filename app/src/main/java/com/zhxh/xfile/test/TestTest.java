@@ -2,6 +2,8 @@ package com.zhxh.xfile.test;
 
 import com.zhxh.xfilelib.FileUtils;
 
+import java.util.ArrayList;
+
 /**
  * Created by zhxh on 2018/7/12
  */
@@ -14,13 +16,18 @@ public class TestTest {
 
         System.out.println("***************************************************************");
 
-        for (String name : FileUtils.getFilesFromDir(dirPath)) {
+        for (String name : FileUtils.getMatchFiles(dirPath,"\\.\\.")) {
             System.out.println(name);
         }
 
         System.out.println("***************************************************************");
 
-        for (String name : FileUtils.getFilesFromDir(dirPath, "")) {
+        for (String name : FileUtils.getMatchFiles(dirPath, "")) {
+            System.out.println(name);
+        }
+        System.out.println("***************************************************************");
+
+        for (String name : FileUtils.getMatchFiles(null,true,dirPath, "")) {
             System.out.println(name);
         }
     }
