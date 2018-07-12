@@ -8,6 +8,7 @@ import com.zhxh.xfilelib.FileUtils;
 public class TestTest {
 
     private static final String dirPath = "D:\\________________testDir";
+    private static final String dirPath1 = "D:\\________________testDir1";
 
     public static void main(String[] args) {
 

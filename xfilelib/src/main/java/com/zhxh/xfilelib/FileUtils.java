@@ -8,32 +8,26 @@ import java.util.regex.Pattern;
 
 public class FileUtils {
 
-    public static List<String> getFilesFromDir(String path) {
-        return getFilesFromDir(path, null);
+    public static List<String> getFilesFromDir(String dirPath) {
+        return getFilesFromDir(dirPath, null);
     }
 
-    public static List<String> getFilesFromDir(String path, String regRex) {
-
+    public static List<String> getFilesFromDir(String dirPath, String regRex) {
         List<String> resultList = new ArrayList<>();
-
-        File fileDirectory = new File(path);
-
+        File fileDirectory = new File(dirPath);
         File[] fileList = fileDirectory.listFiles();
-
+        if (fileList == null) {
+            return resultList;
+        }
         for (int i = 0; i < fileList.length; i++) {
-
             File file = fileList[i];
-
             if (!file.isDirectory()) {
-
                 String fileName = file.getName();
-
                 if (null == regRex || regRex.length() == 0) {
                     resultList.add(fileName);
                 } else {
                     Pattern pattern = Pattern.compile(regRex);
                     Matcher matcher = pattern.matcher(fileName);
-
                     if (matcher.find()) {
                         resultList.add(fileName);
                     }
@@ -42,5 +36,4 @@ public class FileUtils {
         }
         return resultList;
     }
-
 }
