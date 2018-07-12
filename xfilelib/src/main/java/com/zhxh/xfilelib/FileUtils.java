@@ -17,7 +17,7 @@ public class FileUtils {
     }
 
     /**
-     * 输出顺序是从树最深层遍历
+     * 输出顺序是从树最深层遍历 逆序
      *
      * @param resultList 输出位置
      * @param isNest     是否嵌套
