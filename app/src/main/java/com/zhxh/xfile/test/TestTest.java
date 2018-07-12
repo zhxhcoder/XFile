@@ -13,7 +13,7 @@ public class TestTest {
 
         System.out.println("***************************************************************");
 
-        for (String name : FileUtils.getMatchFiles(dirPath,"\\.\\.")) {
+        for (String name : FileUtils.getMatchFiles(dirPath, "\\.\\.")) {
             System.out.println(name);
         }
 
@@ -24,17 +24,25 @@ public class TestTest {
         }
         System.out.println("***************************************************************");
 
-        for (String name : FileUtils.getMatchFiles(null,true,dirPath, "")) {
+        for (String name : FileUtils.getMatchFiles(null, true, dirPath, "")) {
             System.out.println(name);
         }
 
         System.out.println("*******************************改变名字********************************");
-        for (String name : FileUtils.getMatchFiles(null,true,dirPath, "\\.txt$")) {
-            System.out.println("before "+name);
+        for (String name : FileUtils.getMatchFiles(null, true, dirPath, "\\.txt$")) {
+            System.out.println("before " + name);
         }
-        FileUtils.renameMatchFiles(true,dirPath, "\\.\\.txt$","._.txt");
-        for (String name : FileUtils.getMatchFiles(null,true,dirPath, "\\.txt$")) {
-            System.out.println("after "+name);
+        //FileUtils.renameMatchFiles(true,dirPath, "\\.\\.txt$","._.txt");
+        for (String name : FileUtils.getMatchFiles(null, true, dirPath, "\\.txt$")) {
+            System.out.println("after " + name);
+        }
+        System.out.println("*******************************删除文件********************************");
+        for (String name : FileUtils.getMatchFiles(null, true, dirPath, "text21")) {
+            System.out.println("before " + name);
+        }
+        FileUtils.deleteMatchFiles(true,dirPath, "text21");
+        for (String name : FileUtils.getMatchFiles(null, true, dirPath, "text21")) {
+            System.out.println("after " + name);
         }
     }
 
