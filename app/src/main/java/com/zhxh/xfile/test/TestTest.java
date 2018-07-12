@@ -8,6 +8,7 @@ import com.zhxh.xfilelib.FileUtils;
 public class TestTest {
 
     private static final String dirPath = "D:\\________________testDir";
+    private static final String destDir = "D:\\________________testDir1";
 
     public static void main(String[] args) {
 
@@ -36,12 +37,13 @@ public class TestTest {
         for (String name : FileUtils.getMatchFiles(null, true, dirPath, "\\.txt$")) {
             System.out.println("after " + name);
         }
-        System.out.println("*******************************删除文件********************************");
+
+        System.out.println("*******************************copyMatchFiles********************************");
         for (String name : FileUtils.getMatchFiles(null, true, dirPath, "text21")) {
             System.out.println("before " + name);
         }
-        FileUtils.deleteMatchFiles(true,dirPath, "text21");
-        for (String name : FileUtils.getMatchFiles(null, true, dirPath, "text21")) {
+        FileUtils.copyMatchFiles(true, dirPath, "text21", destDir);
+        for (String name : FileUtils.getMatchFiles(null, false, destDir, "text21")) {
             System.out.println("after " + name);
         }
     }
