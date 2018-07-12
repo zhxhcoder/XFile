@@ -80,7 +80,7 @@ public class FileUtils {
                     Pattern pattern = Pattern.compile(regRex);
                     Matcher matcher = pattern.matcher(fileName);
                     if (matcher.find()) {
-                        file.renameTo(new File(file.getParent()+"\\"+fileName.replaceAll(regRex,replace)));
+                        file.renameTo(new File(file.getParent() + "\\" + fileName.replaceAll(regRex, replace)));
                     }
                 }
             } else {
@@ -91,5 +91,8 @@ public class FileUtils {
         }
     }
 
+    public static void renameMatchFiles(String dirPath, String regRex, String replace) {
+        renameMatchFiles(false, dirPath, regRex, replace);
+    }
 
 }
