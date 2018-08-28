@@ -1,1 +1,1 @@
-include ':app', ':xfilelib'
+include ':app', ':mvvmbase'
