@@ -1,6 +1,6 @@
 package com.zhxh.xfile.test;
 
-import com.zhxh.xfilelib.FileUtils;
+import com.zhxh.xfile.FileUtils;
 
 /**
  * Created by zhxh on 2018/7/12

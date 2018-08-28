@@ -1,4 +1,4 @@
-package com.zhxh.xfilelib;
+package com.zhxh.xfile;
 
 import java.io.File;
 import java.io.FileInputStream;
