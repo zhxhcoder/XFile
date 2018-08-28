@@ -1,145 +1,63 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.github.dcendents.android-maven'
-
 android {
-    compileSdkVersion 27
-
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 27
-        versionCode 3
-        versionName "1.2"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
     }
-
+    dataBinding {
+        enabled true
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions {
-        abortOnError false
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    android.libraryVariants.all {
-        variant ->
-            variant.outputs.all {
-                outputFileName = "xfile.aar"
-            }
-    }
-}
-
-this.project.afterEvaluate {
-    def buildTask = this.project.tasks.getByName('assembleRelease')
-    if (buildTask == null) throw GradleException
-    buildTask.doLast {
-        copyApk.execute()
-    }
-}
-
-/** 执行完成打包后将文件复制到主项目的资源文件中*/
-task copyApk {
-    doLast {
-        if (rootProject.file('app/libs/xfile.aar').exists()) {
-            println('我先删除了旧的xfile.aar')
-            rootProject.file('pp/libs/xfile.aar').delete()
-        }
-        copy {
-            from "${buildDir}/outputs/aar/xfile.aar"
-            into rootProject.file('app/libs/')
-            println('新的xfile.aar已经复制到app/libs/')
-        }
-    }
-
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-}
-
-def siteUrl = 'https://github.com/zhxhcoder/XFile'   //项目的主页
-def gitUrl = 'https://github.com/zhxhcoder/XFile.git'   //github仓库的地址
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-version = "1.2"//version
-group = "com.zhxh"//groupId
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    pkg {
-        repo = 'android'//创建的仓库名字
-        name = 'XFile'//packageName
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ['Apache-2.0']//创建仓库时选择的license type
-        userOrg = 'zhxh' //自己bintray创建的organization名称
-        publish = true // 是否是公开项目。
-
-        version {
-            name = '1.2'//版本号
-            desc = 'file tools for java or android development'//版本描述
-            released = new Date()
-            vcsTag = 'v1.2'
-            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
-        }
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    //support
+    api rootProject.ext.support["support-v4"]
+    api rootProject.ext.support["appcompat-v7"]
+    api rootProject.ext.support["recyclerview-v7"]
+    //rxjava
+    api rootProject.ext.dependencies.rxjava
+    api rootProject.ext.dependencies.rxandroid
+    //rx管理View的生命周期
+    api rootProject.ext.dependencies.rxlifecycle
+    api rootProject.ext.dependencies["rxlifecycle-components"]
+    //rxbinding
+    api rootProject.ext.dependencies.rxbinding
+    //rx权限请求
+    api rootProject.ext.dependencies.rxpermissions
+    //network
+    api rootProject.ext.dependencies.okhttp
+    api rootProject.ext.dependencies.retrofit
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["adapter-rxjava"]
+    //json解析
+    api rootProject.ext.dependencies.gson
+    //material-dialogs
+    api(rootProject.ext.dependencies["material-dialogs-core"]) {
+        exclude group: 'com.android.support'
     }
-    configurations = ['archives']
-}
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                packaging 'aar'
-                //项目描述
-                description 'file tools for java or android development'
-                url siteUrl
-                // 填写开源协议
-                licenses {
-                    license {
-                        name 'Apache-2.0'
-                        url ' http://www.apache.org/licenses/LICENSE-2.0'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'geekcoder'
-                        //填写邮件地址
-                        email 'zhxhcoder@gmail.com'
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
+    api(rootProject.ext.dependencies["material-dialogs-commons"]) {
+        exclude group: 'com.android.support'
     }
+    //glide图片加载库
+    api rootProject.ext.dependencies.glide
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    //recyclerview的databinding套装
+    api rootProject.ext.dependencies.bindingcollectionadapter
+    api(rootProject.ext.dependencies["bindingcollectionadapter-recyclerview"]) {
+        exclude group: 'com.android.support'
+    }
+    //Google LiveData和ViewModel组件
+    //api rootProject.ext.dependencies["lifecycle-extensions"]
 }
-//打包源码
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-//打包源码doc文档
-task javadoc(type: Javadoc) {
-    options.encoding = "UTF-8"
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
-

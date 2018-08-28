@@ -2,8 +2,8 @@ ext {
     //android开发版本配置
     android = [
             compileSdkVersion: 27,
-            buildToolsVersion: "27.1.0",
-            applicationId    : "com.goldze.mvvmhabit",
+            buildToolsVersion: "27.0.3",
+            applicationId    : "com.zhxh.xmvvm",
             minSdkVersion    : 15,
             targetSdkVersion : 27,
             versionCode      : 1,
@@ -11,7 +11,7 @@ ext {
     ]
     //version配置
     versions = [
-            "support-version": "27.1.0",
+            "support-version": "27.1.1",
             "junit-version"  : "4.12",
     ]
     //support配置
@@ -56,8 +56,6 @@ ext {
             "bindingcollectionadapter-recyclerview": "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0",
             //Google新组件
             "lifecycle-extensions"                 : "android.arch.lifecycle:extensions:1.0.0",
-            //MVVMHabit
-            "MVVMHabit"                            : "com.github.goldze:MVVMHabit:2.0.8",
     ]
 }
 
