@@ -16,7 +16,6 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding;
 
 /**
  * 所有例子仅做参考,理解如何使用才最重要。
-
  */
 
 public class ViewPagerViewModel extends BaseViewModel {
