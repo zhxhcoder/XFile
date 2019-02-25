@@ -9,9 +9,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import com.zhxh.mvvm.utils.MaterialDialogUtils;
 
-/**
 
- */
 public class BaseViewModel implements IBaseViewModel {
     protected Context context;
     protected Fragment fragment;

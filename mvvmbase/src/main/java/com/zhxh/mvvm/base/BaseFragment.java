@@ -12,9 +12,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import com.zhxh.mvvm.bus.Messenger;
 
-/**
 
- */
 public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseViewModel> extends RxFragment implements IBaseActivity {
     protected V binding;
     protected VM viewModel;

@@ -6,10 +6,6 @@ import android.os.Bundle;
 
 import com.zhxh.mvvm.utils.Utils;
 
-/**
-
- */
-
 public class BaseApplication extends Application {
     private static BaseApplication sInstance;
 
